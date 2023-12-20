@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ServiceStationStorekeeperView"
         mc:Ignorable="d"
         Loaded="SparePartsWindow_Load"
-          Title="Запчасти" Height="400" Width="600" Icon="Images/icon.ico" ResizeMode="NoResize">
+          Title="Список аксессуаров" Height="400" Width="600" Icon="Images/icon.ico" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
@@ -18,16 +18,16 @@
         <DataGrid x:Name="dataGridSpareParts" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="false">
             <DataGrid.Columns>
                 <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=Id}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Запчасть" Binding="{Binding Path=SparePartName}" Width="0.5*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Аксессуар" Binding="{Binding Path=SparePartName}" Width="0.5*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Цена" Binding="{Binding Path=Price}" Width="0.5*"></DataGridTextColumn>
-                <DataGridTextColumn Header="ФИО кладовщика" Binding="{Binding Path=UserFIO}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="ФИО работника" Binding="{Binding Path=UserFIO}" Width="*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Column="1" VerticalAlignment="Top">
             <Button Content="Добавить" Style="{StaticResource General_button}" Margin="20" Click="ButtonAdd_Click"></Button>
             <Button Content="Изменить" Style="{StaticResource General_button}" Margin="20" Click="ButtonUpd_Click"></Button>
             <Button Content="Удалить" Style="{StaticResource General_button}" Margin="20" Click="ButtonDel_Click"></Button>
-            <Button Content="Привязка машин" Style="{StaticResource General_button}" Margin="20" Click="ButtonFastening_Click"></Button>
+            <Button Content="Привязка клиентов" Style="{StaticResource General_button}" Margin="20" Click="ButtonFastening_Click"></Button>
             <Button Content="Обновить" Style="{StaticResource General_button}" Margin="20" Click="ButtonRef_Click"></Button>
         </StackPanel>
     </Grid>

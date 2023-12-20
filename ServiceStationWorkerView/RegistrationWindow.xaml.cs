@@ -27,18 +27,17 @@ namespace ServiceStationWorkerView
             logger = LogManager.GetCurrentClassLogger();
         }
 
+        public RegistrationWindow()
+        {
+
+        }
+
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxFIO.Text))
             {
                 MessageBox.Show("Заполните \"ФИО\"", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 logger.Warn("Не заполнено поле ФИО при регистрации");
-                return;
-            }
-            if (comboBoxPosition.SelectedValue == null)
-            {
-                MessageBox.Show("Выберите \"должность\"", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                logger.Warn("Не выбрана должность сотрудника при регистрации");
                 return;
             }
             if (string.IsNullOrEmpty(textBoxEmail.Text))
@@ -69,7 +68,7 @@ namespace ServiceStationWorkerView
                 logic.CreateOrUpdate(new UserBindingModel
                 {
                     FIO = textBoxFIO.Text,
-                    Position = (UserPosition)Enum.Parse(typeof(UserPosition), comboBoxPosition.SelectedValue.ToString()),
+                    Position = (UserPosition)Enum.Parse(typeof(UserPosition), 1.ToString()),
                     Email = textBoxEmail.Text,
                     Password = textBoxPassword.Text
                 });
@@ -92,11 +91,7 @@ namespace ServiceStationWorkerView
 
         private void RegistrationWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            comboBoxPosition.Items.Clear();
-            foreach (string position in Enum.GetNames(typeof(UserPosition)))
-            {
-                comboBoxPosition.Items.Add(position);
-            }
+
         }
     }
 }

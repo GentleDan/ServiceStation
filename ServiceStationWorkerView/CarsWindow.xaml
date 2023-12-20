@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ServiceStationWorkerView"
         mc:Ignorable="d"
         Loaded="CarsWindow_Load"
-       Title="Машины" Height="400" Width="600" Icon="Images/icon.ico" ResizeMode="NoResize">
+       Title="Клиенты" Height="400" Width="600" Icon="Images/icon.ico" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
@@ -18,7 +18,7 @@
         <DataGrid x:Name="dataGridCars" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="false">
             <DataGrid.Columns>
                 <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=Id}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Машина" Binding="{Binding Path=CarName}" Width="0.5*"></DataGridTextColumn>
+                <DataGridTextColumn Header="ФИО клиента" Binding="{Binding Path=CarName}" Width="0.5*"></DataGridTextColumn>
                 <DataGridTextColumn Header="ФИО работника" Binding="{Binding Path=UserFIO}" Width="*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>

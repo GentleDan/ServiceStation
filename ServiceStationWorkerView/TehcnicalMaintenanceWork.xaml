@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ServiceStationWorkerView"
         mc:Ignorable="d"
-        Title="Добавление работы" Height="190" Width="415" Icon="Images/icon.ico" ResizeMode="NoResize">
+        Title="Добавление машины" Height="190" Width="415" Icon="Images/icon.ico" ResizeMode="NoResize">
     <StackPanel VerticalAlignment="Center">
         <Grid>
             <Grid.RowDefinitions>

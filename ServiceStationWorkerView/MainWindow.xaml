@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ServiceStationWorkerView"
         mc:Ignorable="d"
-       Title="СТО Руки-Крюки" Height="500" Width="1000" MinWidth="800" MinHeight="450" Icon="Images/icon.ico">
+       Title="Автосалон мечты" Height="500" Width="1000" MinWidth="800" MinHeight="450" Icon="Images/icon.ico">
     <Window.Resources>
         <Style TargetType="Button" x:Key="MainMenu_button">
             <Setter Property="Background" Value="{StaticResource General_backgroundBrush}"></Setter>
@@ -56,17 +56,21 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Content="Сделки" Style="{StaticResource MainMenu_button}" Click="ButtonTechnicalMaintenances_Click"/>
-            <Button Grid.Column="1" Content="Клиенты" Style="{StaticResource MainMenu_button}" Click="ButtonCars_Click"/>
+            <Button Grid.Column="1" Content="Клиенты" Style="{StaticResource MainMenu_button}" Click="ButtonCarsList_Click"/>
             <Button Grid.Column="2" Style="{StaticResource MainMenu_button}" Click="ButtonServiceRecordings_Click">
                 <Button.Content>
                     <TextBlock Text="Записи сделок" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
                 </Button.Content>
             </Button>
-            <Button Grid.Column="3" Content="Аксессуары" Style="{StaticResource MainMenu_button}" Click="ButtonSparePartsList_Click"/>
-            <Button Grid.Column="4" Content="Отчет" Style="{StaticResource MainMenu_button}" Click="ButtonReport_Click"/>
-            <Button Grid.Column="5" Content="Выход" Style="{StaticResource MainMenu_button}" Click="ButtonExit_Click"/>
+            <Button Grid.Column="3" Content="Акссесуары" Style="{StaticResource MainMenu_button}" Click="ButtonSpareParts_Click"/>
+            <Button Grid.Column="4" Content="Машины" Style="{StaticResource MainMenu_button}" Click="ButtonWorksList_Click"/>
+            <Button Grid.Column="5" Content="Отчет" Style="{StaticResource MainMenu_button}" Click="ButtonReport_Click"/>
+            <Button Grid.Column="6" Content="Аксе-ры отчет" Style="{StaticResource MainMenu_button}" Click="ButtonSparePartsList_Click"/>
+            <Button Grid.Column="7" Content="Выход" Style="{StaticResource MainMenu_button}" Click="ButtonExit_Click"/>
         </Grid>
         <!--Подвал-->
         <StackPanel  DockPanel.Dock="Bottom">
@@ -74,7 +78,7 @@
         </StackPanel>
         <!--Графика-->
         <Canvas HorizontalAlignment="Center" Width="450" Height="250" VerticalAlignment="Center">
-            <Image  x:Name="logoDark" Source="Images/logo.bmp"/>
+            <Image  x:Name="logoDark" Source="Images/spasibo.jpg" Height="371" Width="590" Canvas.Left="-78" Canvas.Top="-71"/>
         </Canvas>
     </DockPanel>
 </Window>

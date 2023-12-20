@@ -33,7 +33,7 @@ namespace ServiceStationWorkerView
             authWindow.ShowDialog();
         }
 
-        private static IUnityContainer BuildUnityContainer()
+        public static IUnityContainer BuildUnityContainer()
         {
             var currentContainer = new UnityContainer();
             currentContainer.RegisterType<ITechnicalMaintenanceStorage, TechnicalMaintenanceStorage>(new HierarchicalLifetimeManager());

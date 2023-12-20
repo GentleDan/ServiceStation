@@ -22,7 +22,7 @@ namespace ServiceStationBusinessLogic.BusinessLogic
             paragraph.Format.Alignment = ParagraphAlignment.Center;
             paragraph.Style = "Normal";
             var table = document.LastSection.AddTable();
-            List<string> columns = new List<string> { "4cm", "3cm", "5cm", "5cm" };
+            List<string> columns = new List<string> { "4cm", "3cm", "5cm" };
             foreach (var elem in columns)
             {
                 table.AddColumn(elem);
@@ -30,7 +30,7 @@ namespace ServiceStationBusinessLogic.BusinessLogic
             CreateRow(new PdfRowParameters
             {
                 Table = table,
-                Texts = new List<string> { "ТО", "Дата прохождения", "Запчасть", "Машина" },
+                Texts = new List<string> { "Сделка", "Дата продажи", "Клиент" },
                 Style = "NormalTitle",
                 ParagraphAlignment = ParagraphAlignment.Center
             });
@@ -42,7 +42,6 @@ namespace ServiceStationBusinessLogic.BusinessLogic
                     Texts = new List<string> {
                                 technicalMaintenanceSparePartCars.TechnicalMaintenanceName,
                                 technicalMaintenanceSparePartCars.DatePassed.ToShortDateString(),
-                                technicalMaintenanceSparePartCars.SparePart,
                                 technicalMaintenanceSparePartCars.CarName,
                             },
                     Style = "Normal",

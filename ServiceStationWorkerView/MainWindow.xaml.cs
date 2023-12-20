@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using ServiceStationStorekeeperView;
 using Unity;
 
 namespace ServiceStationWorkerView
@@ -48,6 +49,21 @@ namespace ServiceStationWorkerView
         private void ButtonSparePartsList_Click(object sender, RoutedEventArgs e)
         {
             var form = Container.Resolve<SparePartListWindow>();
+            form.ShowDialog();
+        }
+        private void ButtonSpareParts_Click(object sender, RoutedEventArgs e)
+        {
+            var form = Container.Resolve<SparePartsWindow>();
+            form.ShowDialog();
+        }
+        private void ButtonCarsList_Click(object sender, RoutedEventArgs e)
+        {
+            var form = Container.Resolve<CarsWindow>();
+            form.ShowDialog();
+        }
+        private void ButtonWorksList_Click(object sender, RoutedEventArgs e)
+        {
+            var form = Container.Resolve<WorksWindow>();
             form.ShowDialog();
         }
     }

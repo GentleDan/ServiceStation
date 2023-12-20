@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ServiceStationWorkerView"
         Loaded="TechnicalMaintenancesWindow_Load"
         mc:Ignorable="d"
-       Title="ТО" Height="400" Width="600" Icon="Images/icon.ico" ResizeMode="NoResize">
+       Title="Списки сделок" Height="400" Width="600" Icon="Images/icon.ico" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
@@ -18,7 +18,7 @@
         <DataGrid x:Name="dataGridTechnicalMaintenances" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="false">
             <DataGrid.Columns>
                 <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=Id}"></DataGridTextColumn>
-                <DataGridTextColumn Header="ТО" Binding="{Binding Path=TechnicalMaintenanceName}" Width="0.5*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Сделка" Binding="{Binding Path=TechnicalMaintenanceName}" Width="0.5*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Сумма" Binding="{Binding Path=Sum}" Width="0.5*"></DataGridTextColumn>
                 <DataGridTextColumn Header="ФИО работника" Binding="{Binding Path=UserFIO}" Width="*"></DataGridTextColumn>
             </DataGrid.Columns>
@@ -28,7 +28,7 @@
             <Button Content="Изменить" Style="{StaticResource General_button}" Margin="20" Click="ButtonUpd_Click"></Button>
             <Button Content="Удалить" Style="{StaticResource General_button}" Margin="20" Click="ButtonDel_Click"></Button>
             <Button Content="Обновить" Style="{StaticResource General_button}" Margin="20" Click="ButtonRef_Click"></Button>
-            <Button Content="Привязка машин" Style="{StaticResource General_button}" Margin="20" Click="ButtonLinkingCars_Click"></Button>
+            <Button Content="Привязка клиентов" Style="{StaticResource General_button}" Margin="20" Click="ButtonLinkingCars_Click"></Button>
         </StackPanel>
     </Grid>
 </Window>

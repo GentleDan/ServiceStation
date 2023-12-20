@@ -52,9 +52,9 @@ namespace ServiceStationWorkerView
         {
             if (dataGridTechnicalMaintenances.SelectedItem == null || dataGridTechnicalMaintenances.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Выберите TO", "Ошибка", MessageBoxButton.OK,
+                MessageBox.Show("Выберите сделку", "Ошибка", MessageBoxButton.OK,
                    MessageBoxImage.Error);
-                logger.Warn("Не выбрано ТО для отчета");
+                logger.Warn("Не выбрана сделка для отчета");
                 return;
             }
             var dialog = new SaveFileDialog { Filter = "docx|*.docx" };
@@ -87,9 +87,9 @@ namespace ServiceStationWorkerView
         {
             if (dataGridTechnicalMaintenances.SelectedItem == null || dataGridTechnicalMaintenances.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Выберите TO", "Ошибка", MessageBoxButton.OK,
+                MessageBox.Show("Выберите сделку", "Ошибка", MessageBoxButton.OK,
                    MessageBoxImage.Error);
-                logger.Warn("Не выбрано ТО для отчета");
+                logger.Warn("Не выбрана сделка для отчета");
                 return;
             }
             var dialog = new SaveFileDialog { Filter = "xlsx|*.xlsx" };

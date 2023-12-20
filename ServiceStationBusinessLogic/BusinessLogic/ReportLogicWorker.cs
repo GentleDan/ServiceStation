@@ -81,41 +81,26 @@ namespace ServiceStationBusinessLogic.BusinessLogic
                  {
                      Id = serviceRecording.CarId
                  });
-                 var sparePartsDict = new Dictionary<int, string>();
                  tm.TechnicalMaintenanceWorks.ToList().ForEach(work =>
                  {
                      var view = workStorage.GetElement(new WorkBindingModel
                      {
                          Id = work.Key
                      });
-                     if (view != null)
-                     {
-                         view.WorkSpareParts.ToList().ForEach(sparePart =>
-                         {
-                             if (!sparePartsDict.ContainsKey(sparePart.Key))
-                             {
-                                 sparePartsDict.Add(sparePart.Key, sparePart.Value.Item1);
-                             }
-                         });
-                     }
+
                  });
-                 sparePartsDict.ToList().Where(sP => car.CarSpareParts.Any(spC => spC.Key.Equals(sP.Key)))
-                 .ToList().ForEach(tmsp =>
+
+                 tMSPCar.Add(new ReportTechnicalMaintenancesCarsSparePartsViewModel
                  {
-                     tMSPCar.Add(new ReportTechnicalMaintenancesCarsSparePartsViewModel
-                     {
-                         TechnicalMaintenanceName = tm.TechnicalMaintenanceName,
-                         DatePassed = serviceRecording.DatePassed,
-                         CarName = car.CarName,
-                         SparePart = tmsp.Value
-                     });
+                     TechnicalMaintenanceName = tm.TechnicalMaintenanceName,
+                     DatePassed = serviceRecording.DatePassed,
+                     CarName = car.CarName,
                  });
              });
             return tMSPCar
                 .OrderBy(rec => rec.DatePassed)
                 .ThenBy(rec => rec.TechnicalMaintenanceName)
                 .ThenBy(rec => rec.CarName)
-                .ThenBy(rec => rec.SparePart)
                 .ToList();
         }
 
@@ -145,7 +130,7 @@ namespace ServiceStationBusinessLogic.BusinessLogic
             SaveToWordWorker.CreateDoc(new ListSparePartsInfoWorker
             {
                 FileName = model.FileName,
-                Title = "Список запчастей по указанным ТО",
+                Title = "Список аксессуаров по указанным сделкам",
                 TechnicalMaintenanceSpareParts = GetTechnicalMaintenanceSpareParts(model.TechnicalMaintenances)
             });
         }
@@ -155,7 +140,7 @@ namespace ServiceStationBusinessLogic.BusinessLogic
             SaveToExcelWorker.CreateDoc(new ListSparePartsInfoWorker
             {
                 FileName = model.FileName,
-                Title = "Список запчастей по указанным ТО",
+                Title = "Список аксессуаров по указанным сделкам",
                 TechnicalMaintenanceSpareParts= GetTechnicalMaintenanceSpareParts(model.TechnicalMaintenances)
             });
         }
@@ -164,7 +149,7 @@ namespace ServiceStationBusinessLogic.BusinessLogic
             SaveToPdfWorker.CreateDoc(new PdfInfoWorker
             {
                 FileName = model.FileName,
-                Title = "Список пройденных ТО",
+                Title = "Список проданных сделок",
                 DateFrom = model.DateFrom.Value,
                 DateTo = model.DateTo.Value,
                 TechnicalMaintenanceSparePartCars = GetSparePartTechnicalMaintenanceCar(model)

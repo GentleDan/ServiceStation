@@ -127,8 +127,8 @@ namespace ServiceStationWorkerView
                 MailLogic.MailSend(new MailSendInfo
                 {
                     MailAddress = App.Worker.Email,
-                    Subject = "Отчет по ТО",
-                    Text = "Отчет по ТО от " + DatePikerFrom.SelectedDate.Value.ToShortDateString() + " по " + DatePikerTo.SelectedDate.Value.ToShortDateString(),
+                    Subject = "Отчет по сделкам",
+                    Text = "Отчет по сделкам от " + DatePikerFrom.SelectedDate.Value.ToShortDateString() + " по " + DatePikerTo.SelectedDate.Value.ToShortDateString(),
                     FileName = fileName
                 });
                 MessageBox.Show("Выполнено", "Успех", MessageBoxButton.OK,

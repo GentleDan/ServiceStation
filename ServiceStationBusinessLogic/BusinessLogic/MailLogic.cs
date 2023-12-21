@@ -1,8 +1,8 @@
 ﻿using ServiceStationBusinessLogic.HelperModels;
 using System;
-using System.Net;
-using System.Net.Mail;
 using System.Text;
+using MailKit.Net.Smtp;
+using MimeKit;
 
 namespace ServiceStationBusinessLogic.BusinessLogic
 {
@@ -37,31 +37,19 @@ namespace ServiceStationBusinessLogic.BusinessLogic
             {
                 return;
             }
-            using (var objMailMessage = new MailMessage())
-            {
-                using (var objSmtpClient = new SmtpClient(smtpClientHost, smtpClientPort))
-                {
-                    try
-                    {
-                        objMailMessage.From = new MailAddress(mailLogin, mailName);
-                        objMailMessage.To.Add(new MailAddress(info.MailAddress));
-                        objMailMessage.Subject = info.Subject;
-                        objMailMessage.Body = info.Text;
-                        objMailMessage.Attachments.Add(new Attachment(info.FileName));
-                        objMailMessage.SubjectEncoding = Encoding.UTF8;
-                        objMailMessage.BodyEncoding = Encoding.UTF8;
 
-                        objSmtpClient.UseDefaultCredentials = false;
-                        objSmtpClient.EnableSsl = true;
-                        objSmtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-                        objSmtpClient.Credentials = new NetworkCredential(mailLogin,
-                        mailPassword);
-                        objSmtpClient.Send(objMailMessage);
-                    }
-                    catch (Exception)
-                    {
-                        throw;
-                    }
+            using (var emailMessage = new MimeMessage())
+            {
+                emailMessage.From.Add(new MailboxAddress(info.FileName, mailLogin));
+                emailMessage.To.Add(new MailboxAddress(info.FileName, info.MailAddress));
+                emailMessage.Subject = info.Subject;
+
+                using (var client = new SmtpClient())
+                {
+                    client.Connect(smtpClientHost, smtpClientPort, false);
+                    client.Authenticate(mailLogin, mailPassword);
+                    client.Send(emailMessage);
+                    client.Disconnect(true);
                 }
             }
         }

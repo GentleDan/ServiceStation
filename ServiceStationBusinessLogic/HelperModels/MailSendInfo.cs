@@ -1,4 +1,6 @@
-﻿namespace ServiceStationBusinessLogic.HelperModels
+﻿using MimeKit;
+
+namespace ServiceStationBusinessLogic.HelperModels
 {
     public class MailSendInfo
     {

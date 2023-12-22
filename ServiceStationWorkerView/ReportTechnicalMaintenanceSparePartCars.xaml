@@ -29,7 +29,7 @@
         <DataGrid x:Name="dataGridTechnicalMaintenanceSparePartCars" AutoGenerateColumns="False" CanUserAddRows="false" Margin="10" Height="310">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Сделка" Binding="{Binding Path=TechnicalMaintenanceName}" Width="0.33*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Дата прохождения" Binding="{Binding StringFormat=dd.MM.yy, Path=DatePassed}" Width="0.33*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата продажи" Binding="{Binding StringFormat=dd.MM.yy, Path=DatePassed}" Width="0.33*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Клиент" Binding="{Binding Path=CarName}" Width="0.33*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>

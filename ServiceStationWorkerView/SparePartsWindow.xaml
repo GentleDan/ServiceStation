@@ -27,7 +27,6 @@
             <Button Content="Добавить" Style="{StaticResource General_button}" Margin="20" Click="ButtonAdd_Click"></Button>
             <Button Content="Изменить" Style="{StaticResource General_button}" Margin="20" Click="ButtonUpd_Click"></Button>
             <Button Content="Удалить" Style="{StaticResource General_button}" Margin="20" Click="ButtonDel_Click"></Button>
-            <Button Content="Привязка клиентов" Style="{StaticResource General_button}" Margin="20" Click="ButtonFastening_Click"></Button>
             <Button Content="Обновить" Style="{StaticResource General_button}" Margin="20" Click="ButtonRef_Click"></Button>
         </StackPanel>
     </Grid>

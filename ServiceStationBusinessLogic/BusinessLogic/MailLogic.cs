@@ -1,8 +1,8 @@
-﻿using ServiceStationBusinessLogic.HelperModels;
-using System;
-using System.Text;
-using MailKit.Net.Smtp;
+﻿using MailKit.Net.Smtp;
+using MailKit.Security;
 using MimeKit;
+using System;
+using ServiceStationBusinessLogic.HelperModels;
 
 namespace ServiceStationBusinessLogic.BusinessLogic
 {
@@ -25,32 +25,52 @@ namespace ServiceStationBusinessLogic.BusinessLogic
 
         public static void MailSend(MailSendInfo info)
         {
-            if (string.IsNullOrEmpty(smtpClientHost) || smtpClientPort == 0)
+            try
             {
-                return;
-            }
-            if (string.IsNullOrEmpty(mailLogin) || string.IsNullOrEmpty(mailPassword) || string.IsNullOrEmpty(mailName))
-            {
-                return;
-            }
-            if (string.IsNullOrEmpty(info.MailAddress) || string.IsNullOrEmpty(info.Subject) || string.IsNullOrEmpty(info.Text) || string.IsNullOrEmpty(info.FileName))
-            {
-                return;
-            }
+                if (string.IsNullOrEmpty(smtpClientHost) || smtpClientPort == 0)
+                    return;
 
-            using (var emailMessage = new MimeMessage())
-            {
-                emailMessage.From.Add(new MailboxAddress(info.FileName, mailLogin));
-                emailMessage.To.Add(new MailboxAddress(info.FileName, info.MailAddress));
-                emailMessage.Subject = info.Subject;
+                if (string.IsNullOrEmpty(mailLogin) || string.IsNullOrEmpty(mailPassword) || string.IsNullOrEmpty(mailName))
+                    return;
+
+                if (string.IsNullOrEmpty(info.MailAddress) || string.IsNullOrEmpty(info.Subject) || string.IsNullOrEmpty(info.Text) || string.IsNullOrEmpty(info.FileName))
+                    return;
+
+                var message = new MimeMessage();
+                message.From.Add(new MailboxAddress(mailName, mailLogin));
+                message.To.Add(new MailboxAddress("To User", info.MailAddress));
+                message.Subject = info.Subject;
+
+                var body = new TextPart("plain")
+                {
+                    Text = info.Text
+                };
+
+                var multipart = new Multipart("mixed");
+                multipart.Add(body);
+
+                var attachment = new MimePart("application", "pdf")
+                {
+                    Content = new MimeContent(System.IO.File.OpenRead(info.FileName), ContentEncoding.Default),
+                    ContentDisposition = new ContentDisposition(ContentDisposition.Attachment),
+                    ContentTransferEncoding = ContentEncoding.Base64,
+                    FileName = "attachment.pdf"
+                };
+
+                multipart.Add(attachment);
+                message.Body = multipart;
 
                 using (var client = new SmtpClient())
                 {
-                    client.Connect(smtpClientHost, smtpClientPort, false);
+                    client.Connect(smtpClientHost, smtpClientPort, SecureSocketOptions.StartTls);
                     client.Authenticate(mailLogin, mailPassword);
-                    client.Send(emailMessage);
+                    client.Send(message);
                     client.Disconnect(true);
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка отправки письма: {ex.Message}");
             }
         }
     }
